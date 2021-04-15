@@ -31,7 +31,7 @@ def get_node_type(mol,encode_dict):
         x[encode_dict[atom.GetAtomicNum()]] = 1
         nodes.append(x)
 
-    return torch.vstack(nodes).type(torch.LongTensor)
+    return torch.vstack(nodes).type(torch.FloatTensor)
 
 
 def get_edge(mol):
