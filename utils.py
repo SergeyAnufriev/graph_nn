@@ -71,7 +71,7 @@ def mol_to_pytorch(mol,data_,atom_dict):
     edge_index, bond_features = get_edge(mol)
 
     data = Data(x=node_features, edge_index=edge_index, \
-                edge_attr=bond_features, y=torch.tensor(data_,dtype=torch.float32))
+                edge_attr=bond_features, y=torch.tensor(data_,dtype=torch.float32).view(1,2))
 
     return data
 
