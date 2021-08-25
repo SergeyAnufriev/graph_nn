@@ -82,7 +82,7 @@ def data_frame_to_list(df,atom_dict,cols):
     data_list = []
     for _,row in df.iterrows():
 
-        data_list.append(mol_to_pytorch(row['Molecule'],df[cols].values,atom_dict))
+        data_list.append(mol_to_pytorch(row['Molecule'],row[cols],atom_dict))
 
     return data_list
 
