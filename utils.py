@@ -76,13 +76,13 @@ def mol_to_pytorch(mol,y,atom_dict):
     return data
 
 
-def data_frame_to_list(df,atom_dict):
+def data_frame_to_list(df,atom_dict,name):
 
     '''dataframe to list of DATA pytorch geometric objects'''
     data_list = []
     for _,row in df.iterrows():
 
-        data_list.append(mol_to_pytorch(row['Molecule'],int(row['activity']),atom_dict))
+        data_list.append(mol_to_pytorch(row['Molecule'],int(row[name]),atom_dict))
 
     return data_list
 
