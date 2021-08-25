@@ -62,7 +62,7 @@ def get_edge(mol):
 
 
 
-def mol_to_pytorch(mol,y,atom_dict):
+def mol_to_pytorch(mol,data_,atom_dict):
 
     '''mol and traget y to pytorch geometric object'''
 
@@ -71,18 +71,18 @@ def mol_to_pytorch(mol,y,atom_dict):
     edge_index, bond_features = get_edge(mol)
 
     data = Data(x=node_features, edge_index=edge_index, \
-                edge_attr=bond_features, y=torch.LongTensor([y]))
+                edge_attr=bond_features, y=torch.tensor(data_,dtype=torch.float32))
 
     return data
 
 
-def data_frame_to_list(df,atom_dict,name):
+def data_frame_to_list(df,atom_dict,data_):
 
     '''dataframe to list of DATA pytorch geometric objects'''
     data_list = []
     for _,row in df.iterrows():
 
-        data_list.append(mol_to_pytorch(row['Molecule'],int(row[name]),atom_dict))
+        data_list.append(mol_to_pytorch(row['Molecule'],data_,atom_dict))
 
     return data_list
 
